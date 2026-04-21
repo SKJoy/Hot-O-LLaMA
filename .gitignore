@@ -1,6 +1,7 @@
-.env
-Project.md
-GIT.md
+*.code-workspace
+*.zip
 
-# Logs
+GIT.md
+Project.md
+.env
 Log/
