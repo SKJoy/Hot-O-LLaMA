@@ -1,6 +1,8 @@
 services:
 
   server:
+    build:
+      context: ./Build
     image: joy/hot-o-llama:latest
     restart: unless-stopped
     environment:
