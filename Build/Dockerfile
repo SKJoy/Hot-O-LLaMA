@@ -2,12 +2,10 @@
 
 FROM ollama/ollama:latest
 
-ARG PHP_VERSION=8.4
+RUN apt-get update && apt-get install -y curl nano nginx
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    nano \
-    nginx \
+ARG PHP_VERSION=8.3
+RUN apt-get install -y \
     php${PHP_VERSION} \
     php${PHP_VERSION}-cli \
     php${PHP_VERSION}-fpm \
@@ -26,8 +24,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     php${PHP_VERSION}-sqlite3 \
     php${PHP_VERSION}-tokenizer \
     php${PHP_VERSION}-xml \
-    php${PHP_VERSION}-zip \
-    && rm -rf /var/lib/apt/lists/*
+    php${PHP_VERSION}-zip
+    
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quiet
 
@@ -42,5 +41,5 @@ EXPOSE 80 81 11434
 CMD ["/System/Start.sh"]
 
 # docker build -f Build/Dockerfile -t joy/hot-o-llama:latest Build/
-# docker build -f Build/Dockerfile -t joy/hot-o-llama:latest Build/ --build-arg PHP_VERSION=8.4
+# docker build -f Build/Dockerfile -t joy/hot-o-llama:latest Build/ --build-arg PHP_VERSION=8.3
 # docker rmi joy/hot-o-llama:latest

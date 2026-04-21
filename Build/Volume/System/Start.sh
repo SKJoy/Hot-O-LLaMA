@@ -4,7 +4,7 @@
 cp -n /System/Default/* /
 
 # Copy PHP config to PHP-FPM conf.d directory
-cp -f /Data/PHP.ini /etc/php/8.4/fpm/conf.d/99-custom.ini
+cp -f /Data/PHP.ini /etc/php/8.3/fpm/conf.d/99-custom.ini
 
 # Truncate log files exceeding HOT_O_LLAMA_MAX_LOG_SIZE
 bash Log-Truncate.sh
@@ -14,7 +14,7 @@ bash OLLaMA-Start.sh
 bash OLLaMA-Model-Manage.sh
 
 # Start PHP-FPM in background
-php-fpm8.4 &
+php-fpm8.3 &
 
 # Build NginX host configuration
 bash NginX-Host-Build.sh
