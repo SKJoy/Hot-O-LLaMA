@@ -16,9 +16,12 @@ services:
       OLLAMA_NEW_ENGINE: true
     volumes:
       - ${VOLUME_PATH}Data:/Data
+      - ${VOLUME_PATH}Log/NginX:/var/log/nginx
+      - ${VOLUME_PATH}Log/PHP:/var/log/php
     ports:
       - ${NGINX_IP_HTTP:-0.0.0.0}:${NGINX_PORT_HTTP:-80}:80
       - ${OLLAMA_IP_HTTP:-0.0.0.0}:${OLLAMA_PORT_HTTP:-11434}:11434
+      - ${HOT_O_LLAMA_IP_HTTP:-0.0.0.0}:${HOT_O_LLAMA_PORT_HTTP:-65483}:81
 
 networks:
   default:
