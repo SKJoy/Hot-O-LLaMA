@@ -1,0 +1,28 @@
+services:
+
+  server:
+    image: joy/hot-o-llama:latest
+    restart: unless-stopped
+    environment:
+      OLLAMA_DEFAULT_MODEL: ${OLLAMA_DEFAULT_MODEL}
+      OLLAMA_CONTEXT_LENGTH: ${OLLAMA_CONTEXT_LENGTH:-16384}
+      OLLAMA_NUM_THREADS: ${OLLAMA_CPU_THREAD_LIMIT:-4}
+      OLLAMA_NUM_PARALLEL: ${OLLAMA_PARALLEL_CHAT:-2}
+      OLLAMA_MAX_LOADED_MODELS: ${OLLAMA_MODELS_LOADED:-2}
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_MODEL_IDLE_TIMMEOUT:-60m}
+      NGINX_TIMEOUT: ${NGINX_TIMEOUT:-300}
+      OLLAMA_HOST: "0.0.0.0"
+      OLLAMA_NEW_ENGINE: true
+    volumes:
+      - ${VOLUME_PATH}Data:/Data
+    ports:
+      - ${NGINX_IP_HTTP:-0.0.0.0}:${NGINX_PORT_HTTP:-80}:80
+      - ${OLLAMA_IP_HTTP:-0.0.0.0}:${OLLAMA_PORT_HTTP:-11434}:11434
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}

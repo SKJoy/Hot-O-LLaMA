@@ -1,0 +1,8 @@
+# This is a comment line
+
+# Empty lines (inlcuding whitespace) are also ignored
+
+REMOVE qwen3.5:4b-q4_K_M
+DOWNLOAD qwen3.5:2b-q4_K_M
+REMOVE gemma4:e4b-it-q4_K_M
+DOWNLOAD gemma4:e2b-it-q4_K_M

@@ -1,0 +1,8 @@
+# This is a comment line
+
+# Empty lines (inlcuding whitespace) are also ignored
+
+ENABLE my-bearer-key-2026-1
+DISABLE my-bearer-key-2026-2
+DISABLE your-bearer-key-2025-2
+ENABLE your-bearer-key-2026-4
