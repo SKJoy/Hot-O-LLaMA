@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Manage OLLaMA models
 MODEL_FILE="/Data/Model.txt"

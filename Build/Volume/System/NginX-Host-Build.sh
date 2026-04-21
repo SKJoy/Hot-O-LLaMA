@@ -1,8 +1,8 @@
 #!/bin/bash
 
-local NGINX_CONF="/etc/nginx/conf.d/default.conf"
-local TOKEN_FILE="/Data/Bearer-Token.txt"
-local TIMEOUT="${NGINX_TIMEOUT:-300}"
+NGINX_CONF="/etc/nginx/conf.d/default.conf"
+TOKEN_FILE="/Data/Bearer-Token.txt"
+TIMEOUT="${NGINX_TIMEOUT:-300}"
 
 cat > "$NGINX_CONF" << NGINX_EOF
 map \$http_authorization \$ollama_bearer_token {
@@ -30,6 +30,15 @@ if [ -f "$TOKEN_FILE" ]; then
 fi
 
 cat >> "$NGINX_CONF" << NGINX_EOF
+
+server {
+    listen 80;
+	listen [::]:80;
+
+    error_log /var/log/nginx/default.error.log error;
+    access_log /var/log/nginx/default.access.log;
+
+    server_name default; # Replace with your domain or IP
 
     gzip on;
     gzip_vary on;
@@ -64,6 +73,6 @@ NGINX_EOF
 
 
 # Test and reload Nginx
-nginx -t && nginx -s reload
+nginx -t && nginx
 
 
