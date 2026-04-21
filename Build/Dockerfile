@@ -4,12 +4,32 @@ FROM ollama/ollama:latest
 
 ARG PHP_VERSION=8.4
 
-RUN apt-get update
-RUN apt-get install -y curl nano --no-install-recommends
-RUN apt-get install -y nginx --no-install-recommends
-RUN apt-get install -y php${PHP_VERSION}-{cli,fpm,curl,finfo,gd,intl,imap,json,mbstring,mysqlnd,pdo-mysql,pdo-pgsql,pdo-sqlite,phar,sqlite3,tokenizer,xml,zip} --no-install-recommends
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    nano \
+    nginx \
+    php${PHP_VERSION} \
+    php${PHP_VERSION}-cli \
+    php${PHP_VERSION}-fpm \
+    php${PHP_VERSION}-curl \
+    php${PHP_VERSION}-finfo \
+    php${PHP_VERSION}-gd \
+    php${PHP_VERSION}-intl \
+    php${PHP_VERSION}-imap \
+    php${PHP_VERSION}-json \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-mysqlnd \
+    php${PHP_VERSION}-pdo-mysql \
+    php${PHP_VERSION}-pdo-pgsql \
+    php${PHP_VERSION}-pdo-sqlite \
+    php${PHP_VERSION}-phar \
+    php${PHP_VERSION}-sqlite3 \
+    php${PHP_VERSION}-tokenizer \
+    php${PHP_VERSION}-xml \
+    php${PHP_VERSION}-zip \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quiet
-RUN rm -rf /var/lib/apt/lists/*
 
 RUN sed -i "s|;syslog.facility = user|syslog.facility = user|" /etc/php/${PHP_VERSION}/fpm/php-fpm.conf \
     && sed -i "s|;syslog.ident = php-fpm|syslog.ident = php-fpm|" /etc/php/${PHP_VERSION}/fpm/php-fpm.conf \
