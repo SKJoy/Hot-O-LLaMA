@@ -168,3 +168,7 @@ OLLaMA automatically picks up standard OLLaMA environment variables (set in dock
 ## License 📄
 
 MIT License - See LICENSE file for details.
+
+---
+
+**Footnote**: This project was entirely coded by an AI coding agent (Kilo). The README.md, documentation, and the entire git repository are maintained and updated by the AI coding agent.
