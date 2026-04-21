@@ -1,14 +1,6 @@
-.dockerignore
 .env
 Project.md
 GIT.md
-sample.env
-
-# Build artifacts
-Build/Volume/System/Default/
 
 # Logs
 Log/
-
-# PHP config
-Build/Volume/System/Default/Data/PHP.ini
