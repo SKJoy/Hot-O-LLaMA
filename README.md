@@ -1,4 +1,4 @@
-# Hot-O-LLaMA - Docker-based OLLaMA Server with Bearer Token Authentication 🦙
+# **`Hot-O-LLaMA`** - Bearer authenticated OLLaMA 🦙
 
 A Docker containerized OLLaMA server with Nginx reverse proxy and Bearer token authentication (OpenAI-compatible).
 
@@ -43,14 +43,6 @@ A Docker containerized OLLaMA server with Nginx reverse proxy and Bearer token a
 
 ### Environment Variables (`.env`)
 
-#### Docker Stack 🐳
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `VOLUME_PATH` | `./` | Volume path prefix |
-| `NETWORK_PREFIX` | `172.31.245.` | Docker network prefix (change per stack) |
-| `USER_ID` | `0` | Container user ID |
-| `USER_GROUP_ID` | `0` | Container group ID |
-
 #### OLLaMA 🦙
 | Variable | Default | Description |
 |----------|---------|-------------|
@@ -80,7 +72,7 @@ DISABLE my-bearer-token-2026-2   # Deny/disabled token
 
 Comments (`#`) and empty lines are ignored.
 
-Token validation is done via Nginx `map` directive:
+Token validation:
 - 🔍 Extracts token from `Authorization: Bearer <token>` header
 - ✅ Validates against enabled tokens in the file
 - ❌ Returns 401 if invalid or missing
@@ -171,4 +163,4 @@ MIT License - See LICENSE file for details.
 
 ---
 
-**Footnote**: This project was entirely coded by an AI coding agent (Kilo). The README.md, documentation, and the entire git repository are maintained and updated by the AI coding agent.
+**DISCLAIMER**: This project was entirely coded by an AI coding agent (Kilo). The README.md, documentation, and the entire git repository are maintained and updated by the AI coding agent.
